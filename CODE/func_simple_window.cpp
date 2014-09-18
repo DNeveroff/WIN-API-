@@ -4,7 +4,7 @@
 
 LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
 
-TCHAR szClassWindow[] = TEXT("Окно 2");
+TCHAR szClassWindow[] = TEXT("РћРєРЅРѕ 2");
 INT lmb = 0; INT rmb = 0; INT cmb = 0;
 struct stOkno{
 	INT iWidth = 0; 
@@ -21,7 +21,7 @@ INT WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE hPrewInst, LPTSTR lpszCmdLine, i
 	WNDCLASSEX wcl;
 
 
-	//1. Определение окна
+	//1. РћРїСЂРµРґРµР»РµРЅРёРµ РѕРєРЅР°
 	wcl.cbSize = sizeof(wcl);
 	wcl.style = CS_HREDRAW | CS_VREDRAW;
 	wcl.lpfnWndProc = WindowProc;
@@ -36,15 +36,15 @@ INT WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE hPrewInst, LPTSTR lpszCmdLine, i
 	wcl.lpszClassName = szClassWindow;
 	wcl.hIconSm = NULL;
 
-	//2. Регистрация класса окна
+	//2. Р РµРіРёСЃС‚СЂР°С†РёСЏ РєР»Р°СЃСЃР° РѕРєРЅР°
 	if (!RegisterClassEx(&wcl))
 		return 0;
 
-	//3. Создание окна
+	//3. РЎРѕР·РґР°РЅРёРµ РѕРєРЅР°
 	hWnd = CreateWindowEx(
 		0,
 		szClassWindow,
-		TEXT("Каркас Windows приложения"),
+		TEXT("РљР°СЂРєР°СЃ Windows РїСЂРёР»РѕР¶РµРЅРёСЏ"),
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
@@ -56,14 +56,14 @@ INT WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE hPrewInst, LPTSTR lpszCmdLine, i
 		NULL
 		);
 
-	//4. Отображение окна
+	//4. РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕРєРЅР°
 	ShowWindow(hWnd, nCmdShow);
 	//UpdateWindow(hWnd);
 
 	UINT sty = GetClassLong(hWnd, GCL_STYLE);
 	SetClassLong(hWnd, GCL_STYLE, sty | CS_DBLCLKS);
 
-	//5. Запуск цикла обработки сообщений
+	//5. Р—Р°РїСѓСЃРє С†РёРєР»Р° РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёР№
 	while (GetMessage(&Msg, NULL, 0, 0)){
 		TranslateMessage(&Msg);
 		DispatchMessage(&Msg);
@@ -107,19 +107,19 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMessage, WPARAM wParam, LPARAM lPar
 		case VK_ESCAPE:
 			HWND hPanel = FindWindow(TEXT("Shell_TrayWnd"), NULL);
 			if (hPanel){
-				SetWindowText(hWnd, TEXT("Дескриптор панели получен"));
+				SetWindowText(hWnd, TEXT("Р”РµСЃРєСЂРёРїС‚РѕСЂ РїР°РЅРµР»Рё РїРѕР»СѓС‡РµРЅ"));
 			}
 			else{
-				SetWindowText(hWnd, TEXT("Дескриптор панели НЕ получен"));
+				SetWindowText(hWnd, TEXT("Р”РµСЃРєСЂРёРїС‚РѕСЂ РїР°РЅРµР»Рё РќР• РїРѕР»СѓС‡РµРЅ"));
 			}
 			//HWND hWndStart = GetWindow(hPanel, GW_CHILD);
 			//HWND hWndStart = FindWindowEx(hPanel, 0, TEXT("Button"), NULL);
 			HWND hWndStart = FindWindow(TEXT("Button"), NULL);
 			if (hWndStart){
-				SetWindowText(hWnd, TEXT("Дескриптор ПУСКА получен"));
+				SetWindowText(hWnd, TEXT("Р”РµСЃРєСЂРёРїС‚РѕСЂ РџРЈРЎРљРђ РїРѕР»СѓС‡РµРЅ"));
 			}
 			else{
-				SetWindowText(hWnd, TEXT("Дескриптор ПУСКА НЕ получен"));
+				SetWindowText(hWnd, TEXT("Р”РµСЃРєСЂРёРїС‚РѕСЂ РџРЈРЎРљРђ РќР• РїРѕР»СѓС‡РµРЅ"));
 			}
 			/*GetWindowRect(hWndStart, &Okno.win1rect);
 			Okno.iPosX = 500;
@@ -136,12 +136,12 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMessage, WPARAM wParam, LPARAM lPar
 	case WM_RBUTTONDOWN:
 		rmb++;
 		/*HWND hWndCalc;
-		hWndCalc = FindWindow(TEXT("CalcFrame"), TEXT("Калькулятор"));
+		hWndCalc = FindWindow(TEXT("CalcFrame"), TEXT("РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ"));
 		if (hWndCalc){
-			SetWindowText(hWndCalc, TEXT("БУЛЬБУЛЯТОР"));
+			SetWindowText(hWndCalc, TEXT("Р‘РЈР›Р¬Р‘РЈР›РЇРўРћР "));
 		}
 		else{
-			MessageBox(hWnd, TEXT("Ошибка"), TEXT("Запустите калькулятор!"), MB_OK | MB_ICONINFORMATION);
+			MessageBox(hWnd, TEXT("РћС€РёР±РєР°"), TEXT("Р—Р°РїСѓСЃС‚РёС‚Рµ РєР°Р»СЊРєСѓР»СЏС‚РѕСЂ!"), MB_OK | MB_ICONINFORMATION);
 		}*/
 		break;
 	case WM_MBUTTONDOWN:
@@ -153,7 +153,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMessage, WPARAM wParam, LPARAM lPar
 	default:
 		return DefWindowProc(hWnd, uMessage, wParam, lParam);
 	}
-	wsprintf(tmp, TEXT("Клики: левой %i, средней %i, правой %i"), lmb, cmb, rmb);
+	wsprintf(tmp, TEXT("РљР»РёРєРё: Р»РµРІРѕР№ %i, СЃСЂРµРґРЅРµР№ %i, РїСЂР°РІРѕР№ %i"), lmb, cmb, rmb);
 	SetWindowText(hWnd, tmp);
 
 
